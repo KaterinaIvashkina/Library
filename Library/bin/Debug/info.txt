@@ -1,0 +1,3 @@
+user user
+employee qwertyEm
+admin qwertyAd
