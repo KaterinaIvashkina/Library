@@ -15,11 +15,13 @@ namespace Library
         {
             FormSelect form = new FormSelect();
             Authorization autho = new Authorization();
+            
 
             if (autho.checkingUser(loginTextBox.Text, passwordTextBox.Text))
             {
-                form.Show();
+                form.ShowDialog();
                 this.Hide();
+                Application.Exit();
             }
             else MessageBox.Show("Неверный логин или пароль!");
         }

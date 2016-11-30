@@ -26,5 +26,13 @@ namespace Library
             bindingSourceBooks.DataSource = booksDataTable;
             dataGridBooks.DataSource = bindingSourceBooks;
         }
+
+        private void buttonSaveChange_Click(object sender, EventArgs e)
+        {
+            booksDataTable.AcceptChanges();
+            dataAdapter.Update((DataTable)bindingSourceBooks.DataSource);
+        }
+
+
     }
 }

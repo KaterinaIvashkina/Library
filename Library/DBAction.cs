@@ -82,7 +82,19 @@ namespace Library
 
         }
 
+        public static void updateDataTable(ref NpgsqlDataAdapter dataAdapter, string sqlQuery)
+        {
+            using (NpgsqlConnection npgSqlConnection = new NpgsqlConnection(connectionString))
+            {
 
+                dataAdapter.UpdateCommand = new NpgsqlCommand(sqlQuery, npgSqlConnection);
+            }
+        }
+
+        public void deleteInDataTable()
+        {
+
+        }
         
         
     }

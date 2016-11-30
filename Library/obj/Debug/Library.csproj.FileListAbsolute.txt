@@ -58,3 +58,4 @@ D:\my folder\study\practice\3. Third Level\5 семестр\Проектиров
 D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\bin\Debug\fr\Npgsql.resources.dll
 D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\bin\Debug\ja\Npgsql.resources.dll
 D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\bin\Debug\zh-CN\Npgsql.resources.dll
+D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\obj\Debug\Library.FormSearch.resources

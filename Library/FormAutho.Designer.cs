@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.OnlineButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.panel = new System.Windows.Forms.Panel();
+            this.labelPassword = new System.Windows.Forms.Label();
+            this.labelLogin = new System.Windows.Forms.Label();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.loginTextBox = new System.Windows.Forms.TextBox();
-            this.panel1.SuspendLayout();
+            this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // OnlineButton
@@ -47,34 +47,34 @@
             this.OnlineButton.UseVisualStyleBackColor = true;
             this.OnlineButton.Click += new System.EventHandler(this.OnlineButton_Click);
             // 
-            // panel1
+            // panel
             // 
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.passwordTextBox);
-            this.panel1.Controls.Add(this.loginTextBox);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(213, 53);
-            this.panel1.TabIndex = 1;
+            this.panel.Controls.Add(this.labelPassword);
+            this.panel.Controls.Add(this.labelLogin);
+            this.panel.Controls.Add(this.passwordTextBox);
+            this.panel.Controls.Add(this.loginTextBox);
+            this.panel.Location = new System.Drawing.Point(12, 12);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(213, 53);
+            this.panel.TabIndex = 1;
             // 
-            // label2
+            // labelPassword
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Пароль:";
+            this.labelPassword.AutoSize = true;
+            this.labelPassword.Location = new System.Drawing.Point(3, 32);
+            this.labelPassword.Name = "labelPassword";
+            this.labelPassword.Size = new System.Drawing.Size(48, 13);
+            this.labelPassword.TabIndex = 3;
+            this.labelPassword.Text = "Пароль:";
             // 
-            // label1
+            // labelLogin
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Логин:";
+            this.labelLogin.AutoSize = true;
+            this.labelLogin.Location = new System.Drawing.Point(3, 6);
+            this.labelLogin.Name = "labelLogin";
+            this.labelLogin.Size = new System.Drawing.Size(41, 13);
+            this.labelLogin.TabIndex = 2;
+            this.labelLogin.Text = "Логин:";
             // 
             // passwordTextBox
             // 
@@ -99,14 +99,16 @@
             this.AcceptButton = this.OnlineButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(235, 100);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel);
             this.Controls.Add(this.OnlineButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormAutho";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Авторизация";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panel.ResumeLayout(false);
+            this.panel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -114,9 +116,9 @@
         #endregion
 
         private System.Windows.Forms.Button OnlineButton;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel;
+        private System.Windows.Forms.Label labelPassword;
+        private System.Windows.Forms.Label labelLogin;
         private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.TextBox loginTextBox;
     }

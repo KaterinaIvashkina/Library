@@ -58,5 +58,15 @@ namespace Library
             }
             return false;
         }
+
+        public void changePassword(string login, string password, string newPassword)
+        {
+
+        }
+
+        public void toIssuePassword(string login)
+        {
+
+        }
     }
 }

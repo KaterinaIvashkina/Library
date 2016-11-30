@@ -26,36 +26,50 @@ namespace Library
         private void buttonListBooks_Click(object sender, EventArgs e)
         {
             var form = new FormBooks();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void buttonListDepart_Click(object sender, EventArgs e)
         {
             var form = new FormDepartment();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void buttonListOutBooks_Click(object sender, EventArgs e)
         {
             var form = new FormIssuingBooks();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void buttonListReaders_Click(object sender, EventArgs e)
         {
             var form = new FormReaders();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
             var form = new FormPersonalUser();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void labelExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            var form = new FormAutho();
+            this.Hide();
+            #region Set default access
+            Authorization.employee = false;
+            Authorization.user = false;
+            Authorization.admin = false;
+            Authorization.nameUser = "";
+            #endregion
+            form.ShowDialog();
+        }
+
+        private void labelSearch_Click(object sender, EventArgs e)
+        {
+            var form = new FormSearch();
+            form.ShowDialog();
         }       
     }
 }

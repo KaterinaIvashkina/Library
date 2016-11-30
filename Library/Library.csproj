@@ -113,6 +113,12 @@
     <Compile Include="FormReaders.Designer.cs">
       <DependentUpon>FormReaders.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSearch.Designer.cs">
+      <DependentUpon>FormSearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSelect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,7 +133,6 @@
     <Compile Include="Tables\Department.cs" />
     <Compile Include="Tables\Issuing_Books.cs" />
     <Compile Include="Tables\Reader.cs" />
-    <Compile Include="UserContext.cs" />
     <EmbeddedResource Include="FormAutho.resx">
       <DependentUpon>FormAutho.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,6 +151,9 @@
     <EmbeddedResource Include="FormReaders.resx">
       <DependentUpon>FormReaders.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSearch.resx">
+      <DependentUpon>FormSearch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSelect.resx">
       <DependentUpon>FormSelect.cs</DependentUpon>
     </EmbeddedResource>
@@ -158,8 +166,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="ClassDiagram1.cd" />
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

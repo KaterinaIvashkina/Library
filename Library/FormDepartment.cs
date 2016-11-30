@@ -19,10 +19,12 @@ namespace Library
         }
         public static DataTable departmentDataTable = new DataTable();
         private NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter();
+        private string sqlQuery;
 
         private void FormDepartment_Load(object sender, EventArgs e)
         {
             DBAction.getData(ref departmentDataTable, ref dataAdapter, "department");
+            //DBAction.updateDataTable(ref dataAdapter);
             bindingSourceDepartment.DataSource = departmentDataTable;
             dataGridDepartment.DataSource = bindingSourceDepartment;
         }
@@ -30,24 +32,14 @@ namespace Library
         private void buttonSaveChange_Click(object sender, EventArgs e)
         {
             departmentDataTable.AcceptChanges();
-            dataAdapter.Update((DataTable)bindingSourceDepartment.DataSource);
+            //dataAdapter.Update((DataTable)bindingSourceDepartment.DataSource);
+
+            sqlQuery = "update department(address, phone, e_mail) set values (" + dataGridDepartment.CurrentCell.Value + ", " + dataGridDepartment.CurrentCell.Value + ", " + dataGridDepartment.CurrentCell.Value  + ") where " + dataGridDepartment.CurrentCell.RowIndex + " = id_department";
+            DBAction.updateDataTable(ref dataAdapter, sqlQuery);
+            //dataAdapter.UpdateCommamd((DataTable)bindingSourceDepartment.DataSource);
         }
 
-        public void UpdateDataTable()
-        {
-
-            //if (!dataGridDepartment.HasChanges(DataRowState.Added | DataRowState.Modified))
-            //{
-            //    MessageBox.Show("Hasn't been changed:" + DataRowState.Added + "  " + DataRowState.Modified);
-            //    return;
-            //}
-            //DataSet xDataSet;
-            //xDataSet = ds.GetChanges(DataRowState.Added | DataRowState.Modified);    // Changes for modified rows only.            
-            //if (xDataSet.HasErrors)             // Check the DataSet for errors.
-            //    MessageBox.Show("Has Errors"); // Resolve errors.
-
-            //da.Update(xDataSet, tbl);             // After fixing errors, update the data source with da            
-        }
+        
         
     }
 }

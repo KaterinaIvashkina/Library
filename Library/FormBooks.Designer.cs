@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.dataGridBooks = new System.Windows.Forms.DataGridView();
             this.bindingSourceBooks = new System.Windows.Forms.BindingSource(this.components);
+            this.buttonSaveChange = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridBooks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceBooks)).BeginInit();
             this.SuspendLayout();
@@ -43,11 +44,22 @@
             this.dataGridBooks.Size = new System.Drawing.Size(647, 426);
             this.dataGridBooks.TabIndex = 0;
             // 
+            // buttonSaveChange
+            // 
+            this.buttonSaveChange.Location = new System.Drawing.Point(671, 446);
+            this.buttonSaveChange.Name = "buttonSaveChange";
+            this.buttonSaveChange.Size = new System.Drawing.Size(75, 23);
+            this.buttonSaveChange.TabIndex = 1;
+            this.buttonSaveChange.Text = "button1";
+            this.buttonSaveChange.UseVisualStyleBackColor = true;
+            this.buttonSaveChange.Click += new System.EventHandler(this.buttonSaveChange_Click);
+            // 
             // FormBooks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(753, 488);
+            this.Controls.Add(this.buttonSaveChange);
             this.Controls.Add(this.dataGridBooks);
             this.Name = "FormBooks";
             this.Text = "FormBooks";
@@ -62,5 +74,6 @@
 
         private System.Windows.Forms.DataGridView dataGridBooks;
         private System.Windows.Forms.BindingSource bindingSourceBooks;
+        private System.Windows.Forms.Button buttonSaveChange;
     }
 }

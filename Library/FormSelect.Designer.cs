@@ -28,27 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.loginLabel = new System.Windows.Forms.Label();
             this.buttonListBooks = new System.Windows.Forms.Button();
             this.buttonListDepart = new System.Windows.Forms.Button();
             this.buttonListOutBooks = new System.Windows.Forms.Button();
             this.buttonListReaders = new System.Windows.Forms.Button();
             this.labelPersonal = new System.Windows.Forms.Label();
             this.labelExit = new System.Windows.Forms.Label();
+            this.labelSearch = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // loginLabel
-            // 
-            this.loginLabel.AutoSize = true;
-            this.loginLabel.Location = new System.Drawing.Point(674, 12);
-            this.loginLabel.Name = "loginLabel";
-            this.loginLabel.Size = new System.Drawing.Size(109, 13);
-            this.loginLabel.TabIndex = 1;
-            this.loginLabel.Text = "                                  ";
             // 
             // buttonListBooks
             // 
-            this.buttonListBooks.Location = new System.Drawing.Point(92, 29);
+            this.buttonListBooks.Location = new System.Drawing.Point(76, 23);
             this.buttonListBooks.Name = "buttonListBooks";
             this.buttonListBooks.Size = new System.Drawing.Size(146, 23);
             this.buttonListBooks.TabIndex = 3;
@@ -58,7 +49,7 @@
             // 
             // buttonListDepart
             // 
-            this.buttonListDepart.Location = new System.Drawing.Point(92, 59);
+            this.buttonListDepart.Location = new System.Drawing.Point(76, 54);
             this.buttonListDepart.Name = "buttonListDepart";
             this.buttonListDepart.Size = new System.Drawing.Size(146, 23);
             this.buttonListDepart.TabIndex = 4;
@@ -68,7 +59,7 @@
             // 
             // buttonListOutBooks
             // 
-            this.buttonListOutBooks.Location = new System.Drawing.Point(92, 88);
+            this.buttonListOutBooks.Location = new System.Drawing.Point(76, 83);
             this.buttonListOutBooks.Name = "buttonListOutBooks";
             this.buttonListOutBooks.Size = new System.Drawing.Size(146, 23);
             this.buttonListOutBooks.TabIndex = 5;
@@ -78,7 +69,7 @@
             // 
             // buttonListReaders
             // 
-            this.buttonListReaders.Location = new System.Drawing.Point(92, 118);
+            this.buttonListReaders.Location = new System.Drawing.Point(76, 113);
             this.buttonListReaders.Name = "buttonListReaders";
             this.buttonListReaders.Size = new System.Drawing.Size(146, 23);
             this.buttonListReaders.TabIndex = 6;
@@ -89,7 +80,7 @@
             // labelPersonal
             // 
             this.labelPersonal.AutoSize = true;
-            this.labelPersonal.Location = new System.Drawing.Point(246, 9);
+            this.labelPersonal.Location = new System.Drawing.Point(246, 24);
             this.labelPersonal.Name = "labelPersonal";
             this.labelPersonal.Size = new System.Drawing.Size(90, 13);
             this.labelPersonal.TabIndex = 7;
@@ -99,26 +90,38 @@
             // labelExit
             // 
             this.labelExit.AutoSize = true;
-            this.labelExit.Location = new System.Drawing.Point(301, 143);
+            this.labelExit.Location = new System.Drawing.Point(297, 123);
             this.labelExit.Name = "labelExit";
             this.labelExit.Size = new System.Drawing.Size(39, 13);
             this.labelExit.TabIndex = 8;
             this.labelExit.Text = "Выход";
             this.labelExit.Click += new System.EventHandler(this.labelExit_Click);
             // 
+            // labelSearch
+            // 
+            this.labelSearch.AutoSize = true;
+            this.labelSearch.Location = new System.Drawing.Point(297, 9);
+            this.labelSearch.Name = "labelSearch";
+            this.labelSearch.Size = new System.Drawing.Size(39, 13);
+            this.labelSearch.TabIndex = 9;
+            this.labelSearch.Text = "Поиск";
+            this.labelSearch.Click += new System.EventHandler(this.labelSearch_Click);
+            // 
             // FormSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(348, 165);
+            this.ClientSize = new System.Drawing.Size(348, 154);
+            this.Controls.Add(this.labelSearch);
             this.Controls.Add(this.labelExit);
             this.Controls.Add(this.labelPersonal);
             this.Controls.Add(this.buttonListReaders);
             this.Controls.Add(this.buttonListOutBooks);
             this.Controls.Add(this.buttonListDepart);
             this.Controls.Add(this.buttonListBooks);
-            this.Controls.Add(this.loginLabel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormSelect";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добро пожаловать в систему";
@@ -130,12 +133,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Label loginLabel;
         private System.Windows.Forms.Button buttonListBooks;
         private System.Windows.Forms.Button buttonListDepart;
         private System.Windows.Forms.Button buttonListOutBooks;
         private System.Windows.Forms.Button buttonListReaders;
         private System.Windows.Forms.Label labelPersonal;
         private System.Windows.Forms.Label labelExit;
+        private System.Windows.Forms.Label labelSearch;
     }
 }
