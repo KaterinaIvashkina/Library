@@ -34,6 +34,7 @@
             this.labelLogin = new System.Windows.Forms.Label();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.loginTextBox = new System.Windows.Forms.TextBox();
+            this.labelForgottenPassword = new System.Windows.Forms.Label();
             this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,6 +95,16 @@
             this.loginTextBox.Size = new System.Drawing.Size(147, 20);
             this.loginTextBox.TabIndex = 0;
             // 
+            // labelForgottenPassword
+            // 
+            this.labelForgottenPassword.AutoSize = true;
+            this.labelForgottenPassword.Location = new System.Drawing.Point(12, 76);
+            this.labelForgottenPassword.Name = "labelForgottenPassword";
+            this.labelForgottenPassword.Size = new System.Drawing.Size(91, 13);
+            this.labelForgottenPassword.TabIndex = 2;
+            this.labelForgottenPassword.Text = "Забыли пароль?";
+            this.labelForgottenPassword.Click += new System.EventHandler(this.labelForgottenPassword_Click);
+            // 
             // FormAutho
             // 
             this.AcceptButton = this.OnlineButton;
@@ -101,6 +112,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(235, 100);
+            this.Controls.Add(this.labelForgottenPassword);
             this.Controls.Add(this.panel);
             this.Controls.Add(this.OnlineButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -110,6 +122,7 @@
             this.panel.ResumeLayout(false);
             this.panel.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -121,6 +134,7 @@
         private System.Windows.Forms.Label labelLogin;
         private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.TextBox loginTextBox;
+        private System.Windows.Forms.Label labelForgottenPassword;
     }
 }
 

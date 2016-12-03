@@ -85,7 +85,7 @@
             this.labelPersonal.Size = new System.Drawing.Size(90, 13);
             this.labelPersonal.TabIndex = 7;
             this.labelPersonal.Text = "Личный кабинет";
-            this.labelPersonal.Click += new System.EventHandler(this.label1_Click);
+            this.labelPersonal.Click += new System.EventHandler(this.labelPersonal_Click);
             // 
             // labelExit
             // 

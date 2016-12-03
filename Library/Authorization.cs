@@ -2,6 +2,9 @@
 using System.Data;
 using System.Collections;
 using Npgsql;
+using System.Text;
+using System;
+using System.Security.Cryptography;
 
 namespace Library
 {
@@ -13,14 +16,29 @@ namespace Library
         public static string nameUser = "";
         //private const string filePath = @"D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\Library\bin\Debug\info.txt";
         
-        public bool checkingUser(string login, string password)
+        public static bool checkingUser(string login, string e_mail)
         {
-            return (validation(login, password));
+            DataTable dt = new DataTable();
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter();
+            DBAction.getData(ref dt, ref dataAdapter, "reader");
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string correctLogin = dt.Rows[i][0].ToString();
+                string correctEmail = dt.Rows[i][4].ToString();
+
+                if ((login == correctLogin) && (e_mail == correctEmail))
+                {
+                    nameUser = dt.Rows[i][1].ToString();
+                    return true;
+                }
+
+            }
+            return false;
         }
 
         
 
-        private bool validation(string login, string password)
+        public bool validation(string login, string password)
         {
             DataTable dt = new DataTable();
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter();
@@ -37,7 +55,7 @@ namespace Library
                     passwordEmployee = "em";
                 #endregion
 
-                if ((correctLogin == login) && (correctPassword == password))
+                if ((correctLogin == login) && (correctPassword.ToLower() == password))
                 {
                     user = true;
                     nameUser = login;
@@ -58,6 +76,53 @@ namespace Library
             }
             return false;
         }
+
+        public static string SHAdigest(string pass)
+        {
+            return "";
+        }
+
+
+        //public void blabla()
+        //{
+        //    DataTable dt = new DataTable();
+        //    NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter();
+        //    DBAction.getData(ref dt, ref dataAdapter, "login");
+        //    System.IO.StreamWriter textFile = new System.IO.StreamWriter(@"D:\textfile.txt");
+        //    for (int i = 0; i < dt.Rows.Count; i++)
+        //    {
+        //        string pass = dt.Rows[i][1].ToString();
+
+        //        byte[] bytes = new byte[pass.Length];
+        //        int count = 0;
+        //        foreach (var temp in pass)
+        //        {
+        //            bytes[count++] = Convert.ToByte(temp);
+        //        }
+
+
+        //        SHA1 sha = new SHA1CryptoServiceProvider();
+        //        var result = sha.ComputeHash(sha.ComputeHash(bytes));
+        //        //var result = sha.ComputeHash(bytes);
+        //        //string hex = "";
+        //        //foreach (var temp in result)
+        //        //{
+        //        //    hex += Convert.ToString(temp);
+        //        //}
+
+        //        //string hex = Convert.ToBase64String(bytes);
+
+        //        StringBuilder hex = new StringBuilder(result.Length * 2);
+        //        foreach (byte b in result)
+        //        { hex.AppendFormat("{0:x2}", b); }
+
+                
+        //        textFile.WriteLine(hex.ToString());
+                
+        //    }
+        //    textFile.Close();
+        //}
+
 
         public void changePassword(string login, string password, string newPassword)
         {

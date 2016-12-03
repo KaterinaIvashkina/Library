@@ -14,6 +14,7 @@ namespace Library.Tables
         public string year { get; set; }
         public string number_pages { get; set; }
         public string number_copies { get; set; }
+        public int id_department { get; set; }
 
         public Type GetEntityType()
         {

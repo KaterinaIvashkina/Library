@@ -47,7 +47,7 @@ namespace Library
             form.ShowDialog();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void labelPersonal_Click(object sender, EventArgs e)
         {
             var form = new FormPersonalUser();
             form.ShowDialog();
@@ -57,12 +57,19 @@ namespace Library
         {
             var form = new FormAutho();
             this.Hide();
-            #region Set default access
+            #region Set default params
             Authorization.employee = false;
             Authorization.user = false;
             Authorization.admin = false;
             Authorization.nameUser = "";
+
+            FormBooks.booksDataTable.Clear();
+            FormDepartment.departmentDataTable.Clear();
+            FormIssuingBooks.issuingBooksDataTable.Clear();
+            FormReaders.readersDataTable.Clear();
             #endregion
+            
+
             form.ShowDialog();
         }
 
