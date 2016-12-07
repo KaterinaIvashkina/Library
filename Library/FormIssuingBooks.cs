@@ -18,11 +18,11 @@ namespace Library
             InitializeComponent();
         }
         public static DataTable issuingBooksDataTable = new DataTable();
-        private NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter();
+        public static NpgsqlDataAdapter dataAdapterIssuingBooks = new NpgsqlDataAdapter();
 
         private void FormIssuingBooks_Load(object sender, EventArgs e)
         {
-            DBAction.getData(ref issuingBooksDataTable, ref dataAdapter, "issuing_books");
+            issuingBooksDataTable.Columns[0].AutoIncrement = true;
             dataGridIssuingBooks.DataSource = issuingBooksDataTable;
         }
     }

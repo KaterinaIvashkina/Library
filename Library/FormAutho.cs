@@ -12,6 +12,7 @@ namespace Library
             InitializeComponent();
             loginTextBox.AutoCompleteCustomSource = DBAction.getLoginUser();
         }
+        public static string login;
 
         private void OnlineButton_Click(object sender, EventArgs e)
         {
@@ -36,7 +37,8 @@ namespace Library
             { hex.AppendFormat("{0:x2}", b); }
             #endregion
 
-            if (autho.validation(loginTextBox.Text, hex.ToString()))
+            login = loginTextBox.Text;
+            if (autho.validation(login, hex.ToString()))
             {
                 form.ShowDialog();
                 this.Hide();
@@ -49,6 +51,7 @@ namespace Library
         {
             FormPasswordRecovery form = new FormPasswordRecovery();
             form.ShowDialog();
+            Authorization.nameUser = "";
         }
     }
 }

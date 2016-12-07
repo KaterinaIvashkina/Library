@@ -47,13 +47,17 @@ namespace Library
             {
                 string correctLogin = dt.Rows[i][0].ToString();
                 string correctPassword = dt.Rows[i][1].ToString();
+               
 
                 #region Other Login (not user)
-                const string loginAdmin = "admin",
-                    passwordAdmin = "bestadmin",
+                string loginAdmin = "admin",
+                    passwordAdmin = "b1d466cf639b362790f1eab0627e942c4c16921c",//bestadmin
+                    //passwordAdmin = "bestadmin",
                     loginEmployee = "employee",
-                    passwordEmployee = "em";
+                    passwordEmployee = "03fb18f49a5b829acf984d8ccd3b04b6e304d856";//em
                 #endregion
+
+               
 
                 if ((correctLogin == login) && (correctPassword.ToLower() == password))
                 {
@@ -79,20 +83,34 @@ namespace Library
 
         public static string SHAdigest(string pass)
         {
-            return "";
+            byte[] bytes = new byte[pass.Length];
+            int count = 0;
+            foreach (var temp in pass)
+            {
+                bytes[count++] = Convert.ToByte(temp);
+            }
+
+            SHA1 sha = new SHA1CryptoServiceProvider();
+            var result = sha.ComputeHash(sha.ComputeHash(bytes));
+
+            StringBuilder hex = new StringBuilder(result.Length * 2);
+            foreach (byte b in result)
+            { hex.AppendFormat("{0:x2}", b); }
+            return hex.ToString();
         }
 
 
-        //public void blabla()
+        //public string blabla(string password)
         //{
-        //    DataTable dt = new DataTable();
-        //    NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter();
-        //    DBAction.getData(ref dt, ref dataAdapter, "login");
+        //    //DataTable dt = new DataTable();
+        //    //NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter();
+        //    //DBAction.getData(ref dt, ref dataAdapter, "login");
+            
         //    System.IO.StreamWriter textFile = new System.IO.StreamWriter(@"D:\textfile.txt");
-        //    for (int i = 0; i < dt.Rows.Count; i++)
-        //    {
-        //        string pass = dt.Rows[i][1].ToString();
-
+        //    //for (int i = 0; i < dt.Rows.Count; i++)
+        //    //{
+        //        //string pass = dt.Rows[i][1].ToString();
+        //    string pass = password;
         //        byte[] bytes = new byte[pass.Length];
         //        int count = 0;
         //        foreach (var temp in pass)
@@ -116,11 +134,12 @@ namespace Library
         //        foreach (byte b in result)
         //        { hex.AppendFormat("{0:x2}", b); }
 
-                
-        //        textFile.WriteLine(hex.ToString());
-                
-        //    }
+            
+        //        textFile.WriteLine(hex.ToString() + "    " + password);
+
+        //    //}
         //    textFile.Close();
+        //    return hex.ToString();
         //}
 
 

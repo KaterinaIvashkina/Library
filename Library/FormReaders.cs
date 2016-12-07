@@ -18,11 +18,11 @@ namespace Library
             InitializeComponent();
         }
         public static DataTable readersDataTable = new DataTable();
-        private NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter();
+        public static NpgsqlDataAdapter dataAdapterReaders = new NpgsqlDataAdapter();
 
         private void FormReaders_Load(object sender, EventArgs e)
         {
-            DBAction.getData(ref readersDataTable, ref dataAdapter, "reader");
+            
             bindingSourceReaders.DataSource = readersDataTable;
             dataGridReaders.DataSource = bindingSourceReaders;
             

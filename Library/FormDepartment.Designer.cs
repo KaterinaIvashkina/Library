@@ -38,15 +38,16 @@
             // 
             // dataGridDepartment
             // 
+            this.dataGridDepartment.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridDepartment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridDepartment.Location = new System.Drawing.Point(12, 12);
             this.dataGridDepartment.Name = "dataGridDepartment";
-            this.dataGridDepartment.Size = new System.Drawing.Size(626, 351);
+            this.dataGridDepartment.Size = new System.Drawing.Size(555, 248);
             this.dataGridDepartment.TabIndex = 0;
             // 
             // buttonSaveChange
             // 
-            this.buttonSaveChange.Location = new System.Drawing.Point(686, 172);
+            this.buttonSaveChange.Location = new System.Drawing.Point(618, 34);
             this.buttonSaveChange.Name = "buttonSaveChange";
             this.buttonSaveChange.Size = new System.Drawing.Size(75, 23);
             this.buttonSaveChange.TabIndex = 1;
@@ -58,7 +59,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(798, 405);
+            this.ClientSize = new System.Drawing.Size(787, 280);
             this.Controls.Add(this.buttonSaveChange);
             this.Controls.Add(this.dataGridDepartment);
             this.Name = "FormDepartment";

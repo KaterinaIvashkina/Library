@@ -35,13 +35,14 @@
             this.labelPersonal = new System.Windows.Forms.Label();
             this.labelExit = new System.Windows.Forms.Label();
             this.labelSearch = new System.Windows.Forms.Label();
+            this.buttonBooking = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonListBooks
             // 
-            this.buttonListBooks.Location = new System.Drawing.Point(76, 23);
+            this.buttonListBooks.Location = new System.Drawing.Point(66, 51);
             this.buttonListBooks.Name = "buttonListBooks";
-            this.buttonListBooks.Size = new System.Drawing.Size(146, 23);
+            this.buttonListBooks.Size = new System.Drawing.Size(174, 23);
             this.buttonListBooks.TabIndex = 3;
             this.buttonListBooks.Text = "Список книг";
             this.buttonListBooks.UseVisualStyleBackColor = true;
@@ -49,9 +50,9 @@
             // 
             // buttonListDepart
             // 
-            this.buttonListDepart.Location = new System.Drawing.Point(76, 54);
+            this.buttonListDepart.Location = new System.Drawing.Point(66, 80);
             this.buttonListDepart.Name = "buttonListDepart";
-            this.buttonListDepart.Size = new System.Drawing.Size(146, 23);
+            this.buttonListDepart.Size = new System.Drawing.Size(174, 23);
             this.buttonListDepart.TabIndex = 4;
             this.buttonListDepart.Text = "Список отделов";
             this.buttonListDepart.UseVisualStyleBackColor = true;
@@ -59,9 +60,9 @@
             // 
             // buttonListOutBooks
             // 
-            this.buttonListOutBooks.Location = new System.Drawing.Point(76, 83);
+            this.buttonListOutBooks.Location = new System.Drawing.Point(66, 109);
             this.buttonListOutBooks.Name = "buttonListOutBooks";
-            this.buttonListOutBooks.Size = new System.Drawing.Size(146, 23);
+            this.buttonListOutBooks.Size = new System.Drawing.Size(174, 23);
             this.buttonListOutBooks.TabIndex = 5;
             this.buttonListOutBooks.Text = "Список выданных книг";
             this.buttonListOutBooks.UseVisualStyleBackColor = true;
@@ -69,9 +70,9 @@
             // 
             // buttonListReaders
             // 
-            this.buttonListReaders.Location = new System.Drawing.Point(76, 113);
+            this.buttonListReaders.Location = new System.Drawing.Point(66, 22);
             this.buttonListReaders.Name = "buttonListReaders";
-            this.buttonListReaders.Size = new System.Drawing.Size(146, 23);
+            this.buttonListReaders.Size = new System.Drawing.Size(174, 23);
             this.buttonListReaders.TabIndex = 6;
             this.buttonListReaders.Text = "Список читателей";
             this.buttonListReaders.UseVisualStyleBackColor = true;
@@ -80,7 +81,7 @@
             // labelPersonal
             // 
             this.labelPersonal.AutoSize = true;
-            this.labelPersonal.Location = new System.Drawing.Point(246, 24);
+            this.labelPersonal.Location = new System.Drawing.Point(246, 22);
             this.labelPersonal.Name = "labelPersonal";
             this.labelPersonal.Size = new System.Drawing.Size(90, 13);
             this.labelPersonal.TabIndex = 7;
@@ -90,7 +91,7 @@
             // labelExit
             // 
             this.labelExit.AutoSize = true;
-            this.labelExit.Location = new System.Drawing.Point(297, 123);
+            this.labelExit.Location = new System.Drawing.Point(297, 152);
             this.labelExit.Name = "labelExit";
             this.labelExit.Size = new System.Drawing.Size(39, 13);
             this.labelExit.TabIndex = 8;
@@ -107,13 +108,24 @@
             this.labelSearch.Text = "Поиск";
             this.labelSearch.Click += new System.EventHandler(this.labelSearch_Click);
             // 
+            // buttonBooking
+            // 
+            this.buttonBooking.Location = new System.Drawing.Point(66, 138);
+            this.buttonBooking.Name = "buttonBooking";
+            this.buttonBooking.Size = new System.Drawing.Size(174, 23);
+            this.buttonBooking.TabIndex = 10;
+            this.buttonBooking.Text = "Список забронированных книг";
+            this.buttonBooking.UseVisualStyleBackColor = true;
+            this.buttonBooking.Click += new System.EventHandler(this.buttonBooking_Click);
+            // 
             // FormSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(348, 154);
+            this.ClientSize = new System.Drawing.Size(348, 174);
+            this.Controls.Add(this.buttonBooking);
             this.Controls.Add(this.labelSearch);
             this.Controls.Add(this.labelExit);
             this.Controls.Add(this.labelPersonal);
@@ -140,5 +152,6 @@
         private System.Windows.Forms.Label labelPersonal;
         private System.Windows.Forms.Label labelExit;
         private System.Windows.Forms.Label labelSearch;
+        private System.Windows.Forms.Button buttonBooking;
     }
 }

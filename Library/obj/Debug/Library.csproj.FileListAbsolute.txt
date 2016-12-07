@@ -31,7 +31,6 @@ D:\my folder\study\practice\3. Third Level\5 семестр\Проектиров
 D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\bin\Debug\Library.exe.config
 D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\obj\Debug\Library.exe
 D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\obj\Debug\Library.pdb
-D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\obj\Debug\Library.csprojResolveAssemblyReference.cache
 D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\obj\Debug\Library.FormAutho.resources
 D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\obj\Debug\Library.FormBooks.resources
 D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\obj\Debug\Library.FormDepartment.resources

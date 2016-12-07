@@ -85,6 +85,12 @@
     <Compile Include="FormAutho.Designer.cs">
       <DependentUpon>FormAutho.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormBooking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBooking.Designer.cs">
+      <DependentUpon>FormBooking.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormBooks.cs">
       <SubType>Form</SubType>
     </Compile>
