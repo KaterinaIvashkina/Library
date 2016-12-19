@@ -17,13 +17,19 @@ namespace Library
         {
             InitializeComponent();
         }
-        public static DataTable issuingBooksDataTable = new DataTable();
-        public static NpgsqlDataAdapter dataAdapterIssuingBooks = new NpgsqlDataAdapter();
+        public static NpgsqlDataAdapter issuingBooksDataAdapter;
+
+        private static string table = "issuing_books";
+
+        public static void getTableIssuingBooks()
+        {
+            DBAction.getData(out issuingBooksDataAdapter, table);
+        }
 
         private void FormIssuingBooks_Load(object sender, EventArgs e)
         {
-            issuingBooksDataTable.Columns[0].AutoIncrement = true;
-            dataGridIssuingBooks.DataSource = issuingBooksDataTable;
+            //issuingBooksDataTable.Columns[0].AutoIncrement = true;
+            //dataGridIssuingBooks.DataSource = issuingBooksDataTable;
         }
     }
 }

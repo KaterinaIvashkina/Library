@@ -14,41 +14,32 @@ namespace Library
         public static bool employee = false;
         public static bool user = false;
         public static string nameUser = "";
-        //private const string filePath = @"D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\Library\bin\Debug\info.txt";
         
         public static bool checkingUser(string login, string e_mail)
         {
-            DataTable dt = new DataTable();
-            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter();
-            DBAction.getData(ref dt, ref dataAdapter, "reader");
-            for (int i = 0; i < dt.Rows.Count; i++)
+            for (int i = 0; i < DBAction.libraryDS.Tables["reader"].Rows.Count; i++)
             {
-                string correctLogin = dt.Rows[i][0].ToString();
-                string correctEmail = dt.Rows[i][4].ToString();
+                string correctLogin = DBAction.libraryDS.Tables["reader"].Rows[i][0].ToString();
+                string correctEmail = DBAction.libraryDS.Tables["reader"].Rows[i][4].ToString();
 
                 if ((login == correctLogin) && (e_mail == correctEmail))
                 {
-                    nameUser = dt.Rows[i][1].ToString();
+                    nameUser = DBAction.libraryDS.Tables["reader"].Rows[i][1].ToString();
                     return true;
                 }
-
             }
             return false;
         }
 
-        
-
         public bool validation(string login, string password)
         {
-            DataTable dt = new DataTable();
-            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter();
-            DBAction.getData(ref dt, ref dataAdapter, "login");
+            DataTable dt = DBAction.libraryDS.Tables["login"];
+
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 string correctLogin = dt.Rows[i][0].ToString();
                 string correctPassword = dt.Rows[i][1].ToString();
                
-
                 #region Other Login (not user)
                 string loginAdmin = "admin",
                     passwordAdmin = "b1d466cf639b362790f1eab0627e942c4c16921c",//bestadmin
@@ -56,8 +47,6 @@ namespace Library
                     loginEmployee = "employee",
                     passwordEmployee = "03fb18f49a5b829acf984d8ccd3b04b6e304d856";//em
                 #endregion
-
-               
 
                 if ((correctLogin == login) && (correctPassword.ToLower() == password))
                 {
@@ -76,7 +65,6 @@ namespace Library
                     admin = true;
                     return admin;
                 }
-                
             }
             return false;
         }

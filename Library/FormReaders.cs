@@ -17,14 +17,19 @@ namespace Library
         {
             InitializeComponent();
         }
-        public static DataTable readersDataTable = new DataTable();
-        public static NpgsqlDataAdapter dataAdapterReaders = new NpgsqlDataAdapter();
+        private static Npgsql.NpgsqlDataAdapter readersDataAdapter;
+        private static string table = "reader";
+
+        public static void getTableReaders()
+        {
+            DBAction.getData(out readersDataAdapter, table);
+        }
 
         private void FormReaders_Load(object sender, EventArgs e)
         {
             
-            bindingSourceReaders.DataSource = readersDataTable;
-            dataGridReaders.DataSource = bindingSourceReaders;
+            //bindingSourceReaders.DataSource = readersDataTable;
+            //dataGridReaders.DataSource = bindingSourceReaders;
             
         }
     }

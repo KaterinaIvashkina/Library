@@ -10,7 +10,7 @@ namespace Library
         public FormAutho()
         {
             InitializeComponent();
-            loginTextBox.AutoCompleteCustomSource = DBAction.getLoginUser();
+            getDataUsers();
         }
         public static string login;
 
@@ -52,6 +52,17 @@ namespace Library
             FormPasswordRecovery form = new FormPasswordRecovery();
             form.ShowDialog();
             Authorization.nameUser = "";
+        }
+
+        private void FormAutho_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        public static void getDataUsers()
+        {
+            Npgsql.NpgsqlDataAdapter loginDataAdapter;
+            DBAction.getData(out loginDataAdapter, "login");
         }
     }
 }

@@ -10,10 +10,14 @@ namespace Library
         public FormSelect()
         {
             InitializeComponent();
+
+            getAllTables();
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            DBAction.libraryDS.RejectChanges();
+
             if (Authorization.user)
             {
                 buttonListOutBooks.Visible = false;
@@ -24,11 +28,6 @@ namespace Library
             {
                 labelPersonal.Visible = false;
             }
-            DBAction.getData(ref FormBooks.booksDataTable, ref FormBooks.dataAdapterBooks, "book");
-            DBAction.getData(ref FormDepartment.departmentDataTable, ref FormDepartment.dataAdapterDepartment, "department");
-            DBAction.getData(ref FormIssuingBooks.issuingBooksDataTable, ref FormIssuingBooks.dataAdapterIssuingBooks, "issuing_books");
-            DBAction.getData(ref FormReaders.readersDataTable, ref FormReaders.dataAdapterReaders, "reader");
-            DBAction.getData(ref FormBooking.bookingDataTable, ref FormBooking.dataAdapterBooking, "booking");
         }
 
         private void buttonListBooks_Click(object sender, EventArgs e)
@@ -70,18 +69,6 @@ namespace Library
             Authorization.user = false;
             Authorization.admin = false;
             Authorization.nameUser = "";
-
-            FormBooks.booksDataTable.Clear();
-            FormBooks.booksDataTable.Columns.Clear();
-
-            FormDepartment.departmentDataTable.Clear();
-            FormDepartment.departmentDataTable.Columns.Clear();
-
-            FormIssuingBooks.issuingBooksDataTable.Clear();
-            FormIssuingBooks.issuingBooksDataTable.Columns.Clear();
-
-            FormReaders.readersDataTable.Clear();
-            FormReaders.readersDataTable.Columns.Clear();
             #endregion
             
             form.ShowDialog();
@@ -97,6 +84,16 @@ namespace Library
         {
             var form = new FormBooking();
             form.ShowDialog();
-        }       
+        }
+
+        public static void getAllTables()
+        {
+            FormBooking.getTableBooking();
+            FormBooks.getTableBook();
+            FormDepartment.getTableDepartmnet();
+            FormIssuingBooks.getTableIssuingBooks();
+            FormReaders.getTableReaders();
+
+        }
     }
 }

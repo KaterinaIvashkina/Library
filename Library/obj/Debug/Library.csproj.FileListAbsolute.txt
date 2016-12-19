@@ -44,7 +44,6 @@ D:\my folder\study\practice\3. Third Level\5 семестр\Проектиров
 D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\bin\Debug\Library.pdb
 D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\bin\Debug\EntityFramework.dll
 D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\bin\Debug\EntityFramework.SqlServer.dll
-D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\bin\Debug\Mono.Security.dll
 D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\bin\Debug\Npgsql.dll
 D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\bin\Debug\Npgsql.EntityFramework.dll
 D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\bin\Debug\EntityFramework.xml
@@ -59,3 +58,6 @@ D:\my folder\study\practice\3. Third Level\5 семестр\Проектиров
 D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\bin\Debug\zh-CN\Npgsql.resources.dll
 D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\obj\Debug\Library.FormSearch.resources
 D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\obj\Debug\Library.FormPasswordRecovery.resources
+D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\obj\Debug\Library.csprojResolveAssemblyReference.cache
+D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\obj\Debug\Library.FormBooking.resources
+D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\obj\Debug\Library.Reader_Booking.resources

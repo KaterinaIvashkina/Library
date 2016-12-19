@@ -12,71 +12,68 @@ namespace Library
 {
     class DBAction
     {
+        public static DataSet libraryDS = new mylibraryDataSet();
         private const String connectionString = "Server=127.0.0.1; Port=5432; User=postgres; Password=0000;Database=mylibrary;";
         
-        public static void getData(ref DataTable primaryDataTable, ref NpgsqlDataAdapter dataAdapter, string param)
+        public static void getData(out NpgsqlDataAdapter dataAdapter, string table)
         {
-            primaryDataTable.Locale = System.Globalization.CultureInfo.InvariantCulture;
-
-            string querySql = String.Format("select * from {0};", param);
-
-            NpgsqlConnection npgSqlConnection = new NpgsqlConnection(connectionString);
-
-            try
+            //string[] tables = new string[] { "book", "booking", "department", "login", "reader", "issuing_books" };
+            
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
             {
-                dataAdapter = new NpgsqlDataAdapter(querySql, npgSqlConnection);
+               
+                connection.Open();
 
-                NpgsqlCommandBuilder commandBuilder = new NpgsqlCommandBuilder(dataAdapter);
+                string sql = String.Format("select * from {0};", table);
 
-                npgSqlConnection.Open();
-                dataAdapter.Fill(primaryDataTable);
+                dataAdapter = new NpgsqlDataAdapter(sql, connection);
+
+                //libraryDS.Tables.Add(table);
+                NpgsqlCommandBuilder builder = new NpgsqlCommandBuilder(dataAdapter);
+
+                dataAdapter.InsertCommand = builder.GetInsertCommand();
+                dataAdapter.DeleteCommand = builder.GetDeleteCommand();
+                dataAdapter.UpdateCommand = builder.GetUpdateCommand();
+                
+                dataAdapter.Fill(libraryDS, table);
+
+                
+
+
+                
+
+                //foreach (var table in tables) 
+                //{                    
+                //    string sql = String.Format("select * from {0};", table);
+                //    NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(sql, connection);
+                //    adapter.Fill(libraryDS, table);
+                //}
             }
-            catch { MessageBox.Show("Ошибка!"); }
-            finally { npgSqlConnection.Close(); }
-
-
-
         }
 
-        public static AutoCompleteStringCollection getLoginUser()
-        {
-            AutoCompleteStringCollection autoStringCollection = new AutoCompleteStringCollection();
-            string querySql = "select id_library_kard from login;";
-            using (NpgsqlConnection npgSqlConnection = new NpgsqlConnection(connectionString))
-            {
-                NpgsqlCommand commNpsql = new NpgsqlCommand(querySql, npgSqlConnection);
-                npgSqlConnection.Open();
-                NpgsqlDataReader reader = commNpsql.ExecuteReader();
-                var list = new List<string>();
-                while (reader.Read())
-                {
-                    try
-                    {
-                        autoStringCollection.Add(Convert.ToString(reader.GetInt32(0)));
-                    }
-                    catch { }
-
-                }
-            }
-
-            return autoStringCollection;
-
-        }
+       
 
         
 
-        public static void deleteFromDataTable(ref BindingSource bindSource, ref NpgsqlDataAdapter dataAdapter, string _table, string _columnID, int _valueID)
+        public static void deleteFromDataTable(ref NpgsqlDataAdapter dataAdapter, string sqlQuery)
         {
             using (NpgsqlConnection npgSqlConnection = new NpgsqlConnection(connectionString))
             {
-                string sqlQuery = String.Format("delete from {0} where {1} = {2}", _table, _columnID, _valueID);
-                dataAdapter.DeleteCommand = new NpgsqlCommand(sqlQuery);
-                dataAdapter.DeleteCommand.Connection = npgSqlConnection;
-                if (npgSqlConnection.State != ConnectionState.Open)
-                { npgSqlConnection.Open(); }
+                //string sqlQuery = String.Format("delete from {0} where {1} = {2}", _table, _columnID, _valueID);
+                //dataAdapter.DeleteCommand = new NpgsqlCommand(sqlQuery);
+                //dataAdapter.DeleteCommand.Connection = npgSqlConnection;
+                //if (npgSqlConnection.State != ConnectionState.Open)
+                //{ npgSqlConnection.Open(); }
+                ////dataAdapter.Update((DataTable)bindSource.DataSource);
+                //dataAdapter.DeleteCommand.ExecuteNonQuery();
                 //dataAdapter.Update((DataTable)bindSource.DataSource);
-                dataAdapter.DeleteCommand.ExecuteNonQuery();
-                dataAdapter.Update((DataTable)bindSource.DataSource);
+
+
+                //npgSqlConnection.Open();
+                //dataAdapter.DeleteCommand.CommandText = sqlQuery;
+                //dataAdapter.DeleteCommand.Connection = npgSqlConnection;
+                //dataAdapter.Update(libraryDS);
+
             }
         }
 
@@ -104,11 +101,58 @@ namespace Library
             }
         }
 
-        public static void updateDataTable(ref BindingSource bindSource, ref NpgsqlDataAdapter dataAdapter, string sqlQuery)
+        public static void updateDataTable(NpgsqlDataAdapter dataAdapter, string table)//NpgsqlCommand deleteComm, NpgsqlCommand updateComm, NpgsqlCommand insertComm, string table)
+        {
+            //using (NpgsqlConnection npgSqlConnection = new NpgsqlConnection(connectionString))
+            //{
+            //    dataAdapter.UpdateCommand = new NpgsqlCommand(sqlQuery, npgSqlConnection);
+            //    dataAdapter.Update((DataTable)bindSource.DataSource);
+            //}
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                //using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+
+
+                connection.Open();
+                //libraryDS.RejectChanges();
+
+
+                ////dataAdapter.DeleteCommand = deleteComm;
+                dataAdapter.DeleteCommand.Connection = connection;
+
+                ////dataAdapter.UpdateCommand = updateComm;
+                dataAdapter.UpdateCommand.Connection = connection;
+                ////dataAdapter.UpdateCommand.ExecuteNonQuery();
+
+                ////dataAdapter.InsertCommand = insertComm;
+                dataAdapter.InsertCommand.Connection = connection;
+
+                //string sql = String.Format("select * from {0};", table);
+
+                //dataAdapter = new NpgsqlDataAdapter(sql, connection);
+                //NpgsqlCommandBuilder builder = new NpgsqlCommandBuilder(dataAdapter);
+
+                //dataAdapter.InsertCommand = builder.GetInsertCommand();
+                //dataAdapter.DeleteCommand = builder.GetDeleteCommand();
+                //dataAdapter.UpdateCommand = builder.GetUpdateCommand();
+
+
+
+                dataAdapter.Update(libraryDS, table);
+
+                libraryDS.AcceptChanges();
+
+                //getData();
+
+            }
+        }
+
+
+        public static void addDataTable(ref BindingSource bindSource, ref NpgsqlDataAdapter dataAdapter, string sqlQuery)
         {
             using (NpgsqlConnection npgSqlConnection = new NpgsqlConnection(connectionString))
             {
-                dataAdapter.UpdateCommand = new NpgsqlCommand(sqlQuery, npgSqlConnection);
+                dataAdapter.InsertCommand = new NpgsqlCommand(sqlQuery, npgSqlConnection);
                 dataAdapter.Update((DataTable)bindSource.DataSource);
             }
         }

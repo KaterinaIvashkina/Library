@@ -33,38 +33,49 @@ namespace Library
             {
                 confCode = SendMail(e_mail);
 
-                #region changeForm
-                label1.Hide();
-                label2.Hide();
-                textBoxLogin.Hide();
-                textBoxMail.Hide();
-                buttonSendMail.Hide();
+                if (confCode == null)
+                {
+                    MessageBox.Show("Ошибка");
+                }
+                else
+                {
+                    #region changeForm
+                    label1.Hide();
+                    label2.Hide();
+                    textBoxLogin.Hide();
+                    textBoxMail.Hide();
+                    buttonSendMail.Hide();
 
 
-                label3.Show();
-                label4.Show();
-                textBoxCode.Show();
-                textBoxNewPassword.Show();
-                buttonRecovery.Show();
-                #endregion
+                    label3.Show();
+                    label4.Show();
+                    textBoxCode.Show();
+                    textBoxNewPassword.Show();
+                    buttonRecovery.Show();
+                    #endregion
+                }
             }
             else MessageBox.Show("Не удается распознать логин или e-mail. Проверьте правильность введенных данных");
         }
 
         private void buttonRecovery_Click(object sender, EventArgs e)
         {
-            //if (confCode == textBoxCode.Text)
-            //{
+            if (confCode == textBoxCode.Text)
+            {
                 string digest = Authorization.SHAdigest(textBoxNewPassword.Text);
 
                 if (DBAction.updatePassword(digest, login))
                 {
                     MessageBox.Show("Пароль изменен! Теперь вы можете войти в систему");
+
+                    DBAction.libraryDS.Tables["login"].Clear();
+                    FormAutho.getDataUsers();
+
+                    this.Close();
                 }
                 else MessageBox.Show("Возникла ошибка");
-
-            //}
-            //else MessageBox.Show("Введен неверный код");
+            }
+            else MessageBox.Show("Введен неверный код");
         }
 
         private string SendMail(string to)
@@ -72,7 +83,7 @@ namespace Library
             //smtp сервер
             const string smtpHost = "smtp.mail.ru";
             //smtp порт - 25, 587 или 2525
-            const int smtpPort = 25;
+            const int smtpPort = 587;
 
             const string login = "library.best@mail.ru";
             const string pass = "64Rqw.12";
