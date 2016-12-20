@@ -90,7 +90,7 @@ namespace Library
         {
             FormBooking.getTableBooking();
             FormBooks.getTableBook();
-            FormDepartment.getTableDepartmnet();
+            FormDepartment.getTableDepartment();
             FormIssuingBooks.getTableIssuingBooks();
             FormReaders.getTableReaders();
 

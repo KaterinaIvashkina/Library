@@ -61,3 +61,5 @@ D:\my folder\study\practice\3. Third Level\5 семестр\Проектиров
 D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\obj\Debug\Library.csprojResolveAssemblyReference.cache
 D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\obj\Debug\Library.FormBooking.resources
 D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\obj\Debug\Library.Reader_Booking.resources
+D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\obj\Debug\Library.FormNewReader.resources
+D:\my folder\study\practice\3. Third Level\5 семестр\Проектирование БД\Library\git_library\Library\obj\Debug\Library.FormIssuingBookReader.resources

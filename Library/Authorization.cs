@@ -13,6 +13,7 @@ namespace Library
         public static bool admin = false;
         public static bool employee = false;
         public static bool user = false;
+
         public static string nameUser = "";
         
         public static bool checkingUser(string login, string e_mail)

@@ -32,7 +32,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDepartment));
             this.dataGridDepartment = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.departmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.mylibraryDataSet = new Library.mylibraryDataSet();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -47,12 +52,10 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.buttonSaveChange = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.iddepartmentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDepartment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mylibraryDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             this.SuspendLayout();
@@ -64,7 +67,6 @@
             this.dataGridDepartment.AllowUserToResizeColumns = false;
             this.dataGridDepartment.AllowUserToResizeRows = false;
             this.dataGridDepartment.AutoGenerateColumns = false;
-            this.dataGridDepartment.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -75,15 +77,54 @@
             this.dataGridDepartment.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridDepartment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridDepartment.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.iddepartmentDataGridViewTextBoxColumn,
-            this.addressDataGridViewTextBoxColumn,
-            this.phoneDataGridViewTextBoxColumn,
-            this.emailDataGridViewTextBoxColumn});
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4});
             this.dataGridDepartment.DataSource = this.departmentBindingSource;
             this.dataGridDepartment.Location = new System.Drawing.Point(12, 31);
             this.dataGridDepartment.Name = "dataGridDepartment";
-            this.dataGridDepartment.Size = new System.Drawing.Size(532, 167);
+            this.dataGridDepartment.Size = new System.Drawing.Size(494, 215);
             this.dataGridDepartment.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "id_department";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Номер отдела";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "address";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Адрес";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "phone";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Телефон";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "e_mail";
+            this.dataGridViewTextBoxColumn4.HeaderText = "E-mail";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 130;
+            // 
+            // departmentBindingSource
+            // 
+            this.departmentBindingSource.DataMember = "department";
+            this.departmentBindingSource.DataSource = this.mylibraryDataSet;
+            // 
+            // mylibraryDataSet
+            // 
+            this.mylibraryDataSet.DataSetName = "mylibraryDataSet";
+            this.mylibraryDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // bindingNavigator1
             // 
@@ -110,7 +151,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(553, 25);
+            this.bindingNavigator1.Size = new System.Drawing.Size(513, 25);
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -201,7 +242,7 @@
             // 
             // buttonSaveChange
             // 
-            this.buttonSaveChange.Location = new System.Drawing.Point(415, 2);
+            this.buttonSaveChange.Location = new System.Drawing.Point(377, 2);
             this.buttonSaveChange.Name = "buttonSaveChange";
             this.buttonSaveChange.Size = new System.Drawing.Size(129, 23);
             this.buttonSaveChange.TabIndex = 2;
@@ -211,52 +252,17 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 206);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 249);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(553, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(513, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // iddepartmentDataGridViewTextBoxColumn
-            // 
-            this.iddepartmentDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.iddepartmentDataGridViewTextBoxColumn.DataPropertyName = "id_department";
-            this.iddepartmentDataGridViewTextBoxColumn.Frozen = true;
-            this.iddepartmentDataGridViewTextBoxColumn.HeaderText = "Номер отдела";
-            this.iddepartmentDataGridViewTextBoxColumn.Name = "iddepartmentDataGridViewTextBoxColumn";
-            this.iddepartmentDataGridViewTextBoxColumn.Width = 50;
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            this.addressDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.addressDataGridViewTextBoxColumn.DataPropertyName = "address";
-            this.addressDataGridViewTextBoxColumn.Frozen = true;
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Адрес";
-            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            this.addressDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // phoneDataGridViewTextBoxColumn
-            // 
-            this.phoneDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.phoneDataGridViewTextBoxColumn.DataPropertyName = "phone";
-            this.phoneDataGridViewTextBoxColumn.Frozen = true;
-            this.phoneDataGridViewTextBoxColumn.HeaderText = "Телефон";
-            this.phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "e_mail";
-            this.emailDataGridViewTextBoxColumn.Frozen = true;
-            this.emailDataGridViewTextBoxColumn.HeaderText = "E-mail";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.Width = 200;
             // 
             // FormDepartment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(553, 228);
+            this.ClientSize = new System.Drawing.Size(513, 271);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.buttonSaveChange);
             this.Controls.Add(this.dataGridDepartment);
@@ -267,6 +273,7 @@
             this.Load += new System.EventHandler(this.FormDepartment_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDepartment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mylibraryDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
@@ -294,9 +301,11 @@
         private System.Windows.Forms.BindingSource departmentBindingSource;
         //private mylibraryDataSet mylibraryDataSet;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iddepartmentDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn phoneDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private mylibraryDataSet mylibraryDataSet;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.Timer timer1;
     }
 }

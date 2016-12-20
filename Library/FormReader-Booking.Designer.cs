@@ -72,10 +72,6 @@
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // Reader_Booking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

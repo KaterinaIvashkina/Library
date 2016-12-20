@@ -114,22 +114,41 @@ namespace Library
 
         private void buttonIssuing_Click(object sender, EventArgs e)
         {
+            string book = dataGridBooks.CurrentRow.Cells[1].Value.ToString().Trim() + " '" +
+                    dataGridBooks.CurrentRow.Cells[2].Value.ToString().Trim() + "'";
+            string library_cipher = dataGridBooks.CurrentRow.Cells[0].Value.ToString();
 
+            var f = new FormIssuingBookReader(book, library_cipher);
+            f.ShowDialog();
         }
 
         private void buttonBooking_Click(object sender, EventArgs e)
         {
-            if (dataGridBooks.SelectedRows.Count == 1)
+            bool readerHasNotBooking = true;
+            for (int i = 0; i < DBAction.libraryDS.Tables["booking"].Rows.Count; i++)
+            {
+                if (DBAction.libraryDS.Tables["booking"].Rows[i][2].ToString() == Authorization.nameUser)
+                { readerHasNotBooking = false; }
+                else readerHasNotBooking = true;
+            }
+            if (!readerHasNotBooking) { MessageBox.Show("У вас уже есть забронированные книги"); }
+            else if ((dataGridBooks.SelectedRows.Count == 1) && (readerHasNotBooking))
             {
                 string book = dataGridBooks.CurrentRow.Cells[1].Value.ToString().Trim() + " '" +
                     dataGridBooks.CurrentRow.Cells[2].Value.ToString().Trim() + "'";
-                Reader_Booking f = new Reader_Booking(book);
+                string library_cipher = dataGridBooks.CurrentRow.Cells[0].Value.ToString();
+                Reader_Booking f = new Reader_Booking(book, library_cipher);
                 f.ShowDialog();
             }
             else MessageBox.Show("Забронировать можно только одну книгу");
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
+        {
+            dataAdapterCommand();
+        }
+
+        public void dataAdapterCommand()
         {
             bookDataAdapter = new NpgsqlDataAdapter();
 
