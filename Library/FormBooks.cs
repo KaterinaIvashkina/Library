@@ -22,10 +22,6 @@ namespace Library
 
             bookBindingSource.DataSource = DBAction.libraryDS.Tables["book"];
 
-            //DBAction.libraryDS.Tables["book"].RejectChanges();
-
-            //dataGridBooks.Sort(dataGridBooks.Columns[0], ListSortDirection.Ascending);
-
             if (Authorization.user)
             {
                 dataGridBooks.ReadOnly = true;
@@ -79,14 +75,13 @@ namespace Library
         private static string table = "book";
         private static NpgsqlDataAdapter bookDataAdapter;
 
-        //private NpgsqlCommand deleteCommand = new NpgsqlCommand(@"delete from book where id_library_cipher = @Id");
-        //private NpgsqlCommand insertCommand = new NpgsqlCommand(@"insert into book (author, name_book, year_book, number_of_pages, number_of_copies, id_department) values (@Author, @Name, @Year, @Pages, @Copies, @Department);");
-        //private NpgsqlCommand updateCommand = new NpgsqlCommand(@"update book set author = @Author, name_book = @Name, year_book = @Year, number_of_pages = @Pages, number_of_copies = @Copies, id_department = @Department where id_library_cipher = @Id;");
-
+        private NpgsqlCommand deleteCommand = new NpgsqlCommand(@"delete from book where id_library_cipher = @Id");
+        private NpgsqlCommand insertCommand = new NpgsqlCommand(@"insert into book(author, name_book, year_book, number_of_pages, number_of_copies, id_department) values(@Author, @Name, @Year, @Pages, @Copies, @Department) returning id_library_cipher;");
+        private NpgsqlCommand updateCommand = new NpgsqlCommand(@"update book set author = @Author, name_book = @Name, year_book = @Year, number_of_pages = @Pages, number_of_copies = @Copies, id_department = @Department where id_library_cipher = @Id;");
 
         private void FormBooks_Load(object sender, EventArgs e)
         {
-            
+            dataGridBooks.Sort(dataGridBooks.Columns[0], ListSortDirection.Ascending);
         }
 
         void timer1_Tick(object sender, EventArgs e)
@@ -136,90 +131,46 @@ namespace Library
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-                //DataTable updateDT = new DataTable();
-                //updateDT = booksDataTable.GetChanges();
+            bookDataAdapter = new NpgsqlDataAdapter();
 
-                //for (int i = 0; i < updateDT.Rows.Count; i++)
-                //{
-                //    string sqlUpdate = String.Format("update book set author = '{0}', name_book = '{1}', year_book = '{2}', number_of_pages = '{3}', number_of_copies = '{4}', id_department = '{5}' where id_library_cipher = {6};",
-                //        updateDT.Rows[i][1].ToString().Trim(), updateDT.Rows[i][2].ToString().Trim(),
-                //        updateDT.Rows[i][3].ToString().Trim(), updateDT.Rows[i][4].ToString().Trim(),
-                //        updateDT.Rows[i][5].ToString().Trim(), updateDT.Rows[i][6].ToString().Trim(),
-                //        updateDT.Rows[i][0].ToString().Trim());
-                //    //string sqlDelete = String.Format("delete from book where id_library_cipher = {2}", 
-                //    //DBAction.updateDataTable(ref bindingSourceBooks, ref dataAdapterBooks, sqlUpdate, sqlDelete, sqlAdd);
-                //    DBAction.updateDataTable(ref bindingSourceBooks, ref dataAdapterBooks, sqlUpdate);
+            #region parameteters.add
+            deleteCommand.Parameters.Add("@Id", NpgsqlTypes.NpgsqlDbType.Integer).SourceColumn = "id_library_cipher";
 
-                //}
-                //booksDataTable.AcceptChanges();
+            insertCommand.Parameters.Add("@Author", NpgsqlTypes.NpgsqlDbType.Varchar).SourceColumn = "author";
+            insertCommand.Parameters.Add("@Name", NpgsqlTypes.NpgsqlDbType.Varchar).SourceColumn = "name_book";
+            insertCommand.Parameters.Add("@Year", NpgsqlTypes.NpgsqlDbType.Integer).SourceColumn = "year_book";
+            insertCommand.Parameters.Add("@Pages", NpgsqlTypes.NpgsqlDbType.Integer).SourceColumn = "number_of_pages";
+            insertCommand.Parameters.Add("@Copies", NpgsqlTypes.NpgsqlDbType.Integer).SourceColumn = "number_of_copies";
+            insertCommand.Parameters.Add("@Department", NpgsqlTypes.NpgsqlDbType.Integer).SourceColumn = "id_department";
 
-                //deleteCommand.Parameters.Add("@Id", NpgsqlTypes.NpgsqlDbType.Integer).SourceColumn = "id_library_cipher";
+            updateCommand.Parameters.Add("@Author", NpgsqlTypes.NpgsqlDbType.Varchar).SourceColumn = "author";
+            updateCommand.Parameters.Add("@Name", NpgsqlTypes.NpgsqlDbType.Varchar).SourceColumn = "name_book";
+            updateCommand.Parameters.Add("@Year", NpgsqlTypes.NpgsqlDbType.Integer).SourceColumn = "year_book";
+            updateCommand.Parameters.Add("@Pages", NpgsqlTypes.NpgsqlDbType.Integer).SourceColumn = "number_of_pages";
+            updateCommand.Parameters.Add("@Copies", NpgsqlTypes.NpgsqlDbType.Integer).SourceColumn = "number_of_copies";
+            updateCommand.Parameters.Add("@Department", NpgsqlTypes.NpgsqlDbType.Integer).SourceColumn = "id_department";
+            updateCommand.Parameters.Add("@Id", NpgsqlTypes.NpgsqlDbType.Integer).SourceColumn = "id_library_cipher";
+            #endregion
 
-                //NpgsqlDataAdapter bookDataAdapter = new NpgsqlDataAdapter();
-
-                //updateCommand.Parameters.Add("@Author", NpgsqlTypes.NpgsqlDbType.Varchar).SourceColumn = "authorColumn";
-                //updateCommand.Parameters.Add("@Name", NpgsqlTypes.NpgsqlDbType.Varchar).SourceColumn = "namebookColumn";
-                //updateCommand.Parameters.Add("@Year", NpgsqlTypes.NpgsqlDbType.Integer).SourceColumn = "yearbookColumn";
-                //updateCommand.Parameters.Add("@Pages", NpgsqlTypes.NpgsqlDbType.Integer).SourceColumn = "numberofpagesColumn";
-                //updateCommand.Parameters.Add("@Copies", NpgsqlTypes.NpgsqlDbType.Integer).SourceColumn = "numberofcopiesColumn";
-                //updateCommand.Parameters.Add("@Department", NpgsqlTypes.NpgsqlDbType.Integer).SourceColumn = "iddepartmentColumn";
-                //updateCommand.Parameters.Add("@Id", NpgsqlTypes.NpgsqlDbType.Integer).SourceColumn = "idlibrarycipherColumn";
-
-                ////int changeRows = dataGridBooks.Rows.
+            bookDataAdapter.UpdateCommand = updateCommand;
+            bookDataAdapter.DeleteCommand = deleteCommand;
+            bookDataAdapter.InsertCommand = insertCommand;
 
 
-                DBAction.updateDataTable(bookDataAdapter, table);
+            DBAction.updateDataTable(bookDataAdapter, table);
 
-                //bookDataAdapter.Update(DBAction.libraryDS, table);
-
-                //DBAction.libraryDS.AcceptChanges();
-
-                //DBAction.updateDataTable(ref bookDataAdapter, deleteCommand, updateCommand, insertCommand, "book");
-                ////bookDataAdapter.Update(DBAction.libraryDS);
-            
+            getTableBook();
         }
-
-        //private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
-        //{
-            //if (MessageBox.Show("Вы уверены, что хотите удалить книгу?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            //{
-            //    deleteCommand.Parameters.Add("@Id", dataGridBooks[0, dataGridBooks.CurrentRow.Index].Value.ToString());
-
-            //}
-        //}
-
-//        using (SqlConnection conn = new SqlConnection(строка подключения к бд))
-//                {
-//                    SqlCommand comm = new SqlCommand(@"Delete from ClientStock where Id=@Id", conn);
-//                    comm.Parameters.Add("@Id", SqlDbType.Int).SourceColumn = "Id";
-//                    SqlDataAdapter ada = new SqlDataAdapter();
-//                    ada.DeleteCommand = comm;
-//                    comm = new SqlCommand(@"Update ClientStock Set Adress = @Adrr, Distance=@Dist where Id=@Id", conn);
-//                    comm.Parameters.Add("@Id", SqlDbType.Int).SourceColumn = "Id";
-//                    comm.Parameters.Add("@Adrr", SqlDbType.NVarChar).SourceColumn = "Adress";
-//                    comm.Parameters.Add("@Dist", SqlDbType.Decimal).SourceColumn = "Distance";
-//                    ada.UpdateCommand = comm;
- 
-//                    comm = new SqlCommand(@"Insert into ClientStock Values(@IdCl, @IdCity, @Adrr, @Dist); Select @@IDENTITY", conn);
-//                    comm.Parameters.Add("@IdCl", SqlDbType.Int).SourceColumn = "IdCl";
-//                    comm.Parameters.Add("@IdCity", SqlDbType.Int).SourceColumn = "IdCity";
-//                    comm.Parameters.Add("@Adrr", SqlDbType.NVarChar).SourceColumn = "Adress";
-//                    comm.Parameters.Add("@Dist", SqlDbType.Decimal).SourceColumn = "Distance";
-//                    ada.InsertCommand = comm;
- 
-                    
-//                    ada.Update(ClStock); //ClStock - DataTable, 
-////ada.Update(ds, "ClStock"); - перегрузка метода, в качестве параметра объект DataSet, второй - имя таблицы в DataSet
-//                }
-
-
-
-//        this.table_1TableAdapter.Update(this.test5DataSet.Table_1);
-//this.table_2TableAdapter.Update(this.test5DataSet.Table_2);
 
         public static void getTableBook()
         {
+            DBAction.libraryDS.Tables[table].Clear();
             DBAction.getData(out bookDataAdapter, table);
+        }
+
+        private void dataGridBooks_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show("Введены некорректные данные");
         }
 
         

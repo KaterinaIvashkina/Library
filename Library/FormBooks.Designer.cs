@@ -36,6 +36,8 @@
             this.buttonIssuing = new System.Windows.Forms.Button();
             this.buttonBooking = new System.Windows.Forms.Button();
             this.dataGridBooks = new System.Windows.Forms.DataGridView();
+            this.bookBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.mylibraryDataSet = new Library.mylibraryDataSet();
             this.buttonSave = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatus = new System.Windows.Forms.ToolStripStatusLabel();
@@ -52,8 +54,6 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.mylibraryDataSet = new Library.mylibraryDataSet();
-            this.bookBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,11 +66,11 @@
             this.splitContainerDepBooks.Panel2.SuspendLayout();
             this.splitContainerDepBooks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridBooks)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mylibraryDataSet)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mylibraryDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainerDepBooks
@@ -153,6 +153,17 @@
             this.dataGridBooks.Name = "dataGridBooks";
             this.dataGridBooks.Size = new System.Drawing.Size(701, 463);
             this.dataGridBooks.TabIndex = 0;
+            this.dataGridBooks.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridBooks_DataError);
+            // 
+            // bookBindingSource
+            // 
+            this.bookBindingSource.DataMember = "book";
+            this.bookBindingSource.DataSource = this.mylibraryDataSet;
+            // 
+            // mylibraryDataSet
+            // 
+            this.mylibraryDataSet.DataSetName = "mylibraryDataSet";
+            this.mylibraryDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // buttonSave
             // 
@@ -170,7 +181,7 @@
             this.toolStripStatus});
             this.statusStrip1.Location = new System.Drawing.Point(0, 500);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(934, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(930, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -182,6 +193,7 @@
             // bindingNavigator1
             // 
             this.bindingNavigator1.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.bindingNavigator1.BindingSource = this.bookBindingSource;
             this.bindingNavigator1.CountItem = this.bindingNavigatorCountItem;
             this.bindingNavigator1.DeleteItem = this.bindingNavigatorDeleteItem;
             this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -203,7 +215,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(934, 25);
+            this.bindingNavigator1.Size = new System.Drawing.Size(930, 25);
             this.bindingNavigator1.TabIndex = 3;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -292,63 +304,68 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // mylibraryDataSet
-            // 
-            this.mylibraryDataSet.DataSetName = "mylibraryDataSet";
-            this.mylibraryDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // bookBindingSource
-            // 
-            this.bookBindingSource.DataMember = "book";
-            this.bookBindingSource.DataSource = this.mylibraryDataSet;
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "id_library_cipher";
-            this.dataGridViewTextBoxColumn1.HeaderText = "id_library_cipher";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Библиотечный шифр";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.ToolTipText = "Шифр, по которому хранится книга в библиотеке";
+            this.dataGridViewTextBoxColumn1.Width = 80;
             // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "author";
-            this.dataGridViewTextBoxColumn2.HeaderText = "author";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Автор";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ToolTipText = "Автор книги";
+            this.dataGridViewTextBoxColumn2.Width = 150;
             // 
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.DataPropertyName = "name_book";
-            this.dataGridViewTextBoxColumn3.HeaderText = "name_book";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Заглавие";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ToolTipText = "Название книги";
+            this.dataGridViewTextBoxColumn3.Width = 150;
             // 
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.DataPropertyName = "year_book";
-            this.dataGridViewTextBoxColumn4.HeaderText = "year_book";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Год";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ToolTipText = "Год, когда была написана или выпущена книга";
+            this.dataGridViewTextBoxColumn4.Width = 40;
             // 
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.DataPropertyName = "number_of_pages";
-            this.dataGridViewTextBoxColumn5.HeaderText = "number_of_pages";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Количество страниц";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ToolTipText = "Количество страниц в книге";
+            this.dataGridViewTextBoxColumn5.Width = 70;
             // 
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.DataPropertyName = "number_of_copies";
-            this.dataGridViewTextBoxColumn6.HeaderText = "number_of_copies";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Количество экземпляров";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ToolTipText = "Общее количество экземпляров книги в библиотеке";
+            this.dataGridViewTextBoxColumn6.Width = 80;
             // 
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.DataPropertyName = "id_department";
-            this.dataGridViewTextBoxColumn7.HeaderText = "id_department";
+            this.dataGridViewTextBoxColumn7.HeaderText = "Номер отдела";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ToolTipText = "Номер отдела, где находится книга";
+            this.dataGridViewTextBoxColumn7.Width = 70;
             // 
             // FormBooks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(934, 522);
+            this.ClientSize = new System.Drawing.Size(930, 522);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainerDepBooks);
@@ -362,13 +379,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerDepBooks)).EndInit();
             this.splitContainerDepBooks.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridBooks)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mylibraryDataSet)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mylibraryDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -397,13 +414,8 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.DataGridView dataGridBooks;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idlibrarycipherDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn authorDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn namebookDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn yearbookDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numberofpagesDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numberofcopiesDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iddepartmentDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource bookBindingSource;
+        private mylibraryDataSet mylibraryDataSet;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -411,7 +423,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.BindingSource bookBindingSource;
-        private mylibraryDataSet mylibraryDataSet;
     }
 }
