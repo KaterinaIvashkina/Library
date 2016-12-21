@@ -68,7 +68,7 @@ namespace Library
             Authorization.employee = false;
             Authorization.user = false;
             Authorization.admin = false;
-            Authorization.nameUser = "";
+            Authorization.loginUser = "";
             #endregion
             
             form.ShowDialog();

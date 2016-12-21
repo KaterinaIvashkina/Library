@@ -97,7 +97,7 @@ namespace Library
 
             string from = "library.best@mail.ru";
             string subject = "Восстановление пароля. Библиотека";
-            string body = String.Format("Здравствуйте, {0}! \n\n\n Вы заполнили форму восстановления пароля \n\n\n Ваш код подтверждения: {1}", Authorization.nameUser, confCode);
+            string body = String.Format("Здравствуйте, {0}! \n\n\n Вы заполнили форму восстановления пароля \n\n\n Ваш код подтверждения: {1}", Authorization.loginUser, confCode);
 
             MailMessage mess = new MailMessage(from, to, subject, body);
 

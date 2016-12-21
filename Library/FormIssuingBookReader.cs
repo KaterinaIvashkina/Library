@@ -50,7 +50,9 @@ namespace Library
             if (result == DialogResult.OK)
             {
                 int count = DBAction.libraryDS.Tables["issuing_books"].Rows.Count + 1;
-                DBAction.libraryDS.Tables["issuing_books"].Rows.Add(count, Convert.ToInt32(comboBoxReaders.SelectedItem), Convert.ToInt32(cipherBook), DateTime.Now.ToLongDateString(), DateTime.Now.AddDays(daysIssuing).ToLongDateString(), comboBoxDepartment.SelectedIndex + 1);
+                DBAction.libraryDS.Tables["issuing_books"].Rows.Add(count, Convert.ToInt32(comboBoxReaders.SelectedItem), 
+                    Convert.ToInt32(cipherBook), DateTime.Now, DateTime.Now.AddDays(daysIssuing),
+                    comboBoxDepartment.SelectedIndex + 1);
                 var f = new FormIssuingBooks();
                 f.dataAdapterCommand();
                 //f.setInsertCommand(cipherBook, Authorization.nameUser, DateTime.Now.ToLongDateString(), (comboBoxDepartment.SelectedIndex + 1).ToString());

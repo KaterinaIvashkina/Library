@@ -55,7 +55,7 @@ namespace Library
         {
             FormPasswordRecovery form = new FormPasswordRecovery();
             form.ShowDialog();
-            Authorization.nameUser = "";
+            Authorization.loginUser = "";
         }
 
         private void FormAutho_Load(object sender, EventArgs e)

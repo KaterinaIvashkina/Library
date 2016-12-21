@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Library
@@ -21,17 +16,30 @@ namespace Library
         {
             string searchText = textBoxQuery.Text;
             string filterString = "";
-
-            string[] fieldBook = new string[]{"id_library_cipher", "author", "name_book", "year_book",
-                "number_of_pages", "number_of_copies", "id_department"};
-            string[] fieldReader = new string[]{"id_library_kard", "name_reader", "home_address", 
-                "phone", "e_mail"};
-
+            
             DataTable searchDataBook = new DataTable();
-            searchDataBook = DBAction.libraryDS.Tables["book"].Clone(); 
+            searchDataBook = DBAction.libraryDS.Tables["book"].Clone();
+
+            #region SearchDataBook.Columns - Headers
+            searchDataBook.Columns[0].Caption = "Библиотечный шифр";
+            searchDataBook.Columns[1].Caption = "Автор";
+            searchDataBook.Columns[2].Caption = "Заглавие";
+            searchDataBook.Columns[3].Caption = "Год";
+            searchDataBook.Columns[4].Caption = "Количество страниц";
+            searchDataBook.Columns[5].Caption = "Количество экземпляров";
+            searchDataBook.Columns[6].Caption = "Номер отдела";
+            #endregion
 
             DataTable searchDataReader = new DataTable();
             searchDataReader = DBAction.libraryDS.Tables["reader"].Clone();
+
+            #region SearchDataReader.Columns - Headers
+            searchDataReader.Columns[0].Caption = "Номер читательского билета";
+            searchDataReader.Columns[1].Caption = "Имя читателя";
+            searchDataReader.Columns[2].Caption = "Домашний адрес";
+            searchDataReader.Columns[3].Caption = "Телефон";
+            searchDataReader.Columns[4].Caption = "E-mail";
+            #endregion
 
             int searchDigits;
             bool isInt = Int32.TryParse(searchText, out searchDigits);

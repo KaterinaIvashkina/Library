@@ -14,6 +14,7 @@ namespace Library
         public static bool employee = false;
         public static bool user = false;
 
+        public static string loginUser = "";
         public static string nameUser = "";
         
         public static bool checkingUser(string login, string e_mail)
@@ -25,7 +26,7 @@ namespace Library
 
                 if ((login == correctLogin) && (e_mail == correctEmail))
                 {
-                    nameUser = DBAction.libraryDS.Tables["reader"].Rows[i][1].ToString();
+                    loginUser = DBAction.libraryDS.Tables["reader"].Rows[i][1].ToString();
                     return true;
                 }
             }
@@ -52,7 +53,8 @@ namespace Library
                 if ((correctLogin == login) && (correctPassword.ToLower() == password))
                 {
                     user = true;
-                    nameUser = login;
+                    loginUser = login;
+                    //nameUser = 
                     return user;
                 }
                 else if ((login == loginEmployee) && (password == passwordEmployee))

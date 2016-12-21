@@ -127,7 +127,7 @@ namespace Library
             bool readerHasNotBooking = true;
             for (int i = 0; i < DBAction.libraryDS.Tables["booking"].Rows.Count; i++)
             {
-                if (DBAction.libraryDS.Tables["booking"].Rows[i][2].ToString() == Authorization.nameUser)
+                if (DBAction.libraryDS.Tables["booking"].Rows[i][2].ToString() == Authorization.loginUser)
                 { readerHasNotBooking = false; }
                 else readerHasNotBooking = true;
             }
