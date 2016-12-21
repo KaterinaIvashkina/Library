@@ -57,10 +57,13 @@
             // 
             // dataGridViewSearch
             // 
+            this.dataGridViewSearch.AllowUserToAddRows = false;
+            this.dataGridViewSearch.AllowUserToDeleteRows = false;
             this.dataGridViewSearch.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewSearch.Location = new System.Drawing.Point(12, 68);
             this.dataGridViewSearch.Name = "dataGridViewSearch";
+            this.dataGridViewSearch.ReadOnly = true;
             this.dataGridViewSearch.Size = new System.Drawing.Size(614, 308);
             this.dataGridViewSearch.TabIndex = 2;
             // 
@@ -109,6 +112,7 @@
             this.Controls.Add(this.textBoxQuery);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormSearch";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormSearch";
             this.Load += new System.EventHandler(this.FormSearch_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSearch)).EndInit();

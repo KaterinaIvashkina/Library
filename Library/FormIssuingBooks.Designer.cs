@@ -311,12 +311,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridIssuingBooks;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idissuingDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idlibrarykardDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idlibrarycipherDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateissuingDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datereturnDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iddepartmentDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource issuingbooksBindingSource;
         private mylibraryDataSet mylibraryDataSet;
         private System.Windows.Forms.Timer timer1;

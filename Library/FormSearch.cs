@@ -20,6 +20,7 @@ namespace Library
         private void buttonFind_Click(object sender, EventArgs e)
         {
             string searchText = textBoxQuery.Text;
+            string filterString = "";
 
             string[] fieldBook = new string[]{"id_library_cipher", "author", "name_book", "year_book",
                 "number_of_pages", "number_of_copies", "id_department"};
@@ -32,32 +33,54 @@ namespace Library
             DataTable searchDataReader = new DataTable();
             searchDataReader = DBAction.libraryDS.Tables["reader"].Clone();
 
+            int searchDigits;
+            bool isInt = Int32.TryParse(searchText, out searchDigits);
+
             if ((radioButtonBook.Checked) || (Authorization.user))
             {
-                for (int i = 1; i < searchDataBook.Columns.Count; i++)
+                if (isInt)
                 {
-                    string filterString = String.Format("[{0}] = '{1}'", searchDataBook.Columns[i], searchText);
+                    filterString = String.Format("[id_library_cipher] = '{0}' OR [year_book] = '{0}' OR [number_of_copies] = '{0}' OR [number_of_pages] = '{0}' OR [id_department] = '{0}'", searchDigits);                   
+                }
+                else if (!isInt)
+                {
+                    filterString = String.Format("[author] LIKE '%{0}%' OR [name_book] LIKE '%{0}%'", searchText);
+                }
+                DataRow[] selectedRows = DBAction.libraryDS.Tables["book"].Select(filterString);
 
-                    foreach (DataRow row in DBAction.libraryDS.Tables["book"].Select(filterString))
+                if (selectedRows.Count() == 0) { MessageBox.Show("Ничего не найдено"); }
+                else
+                {
+                    foreach (DataRow row in selectedRows)
                     {
                         searchDataBook.ImportRow(row);
                     }
-                }
 
-                dataGridViewSearch.DataSource = searchDataBook;
+                    dataGridViewSearch.DataSource = searchDataBook;
+                }
             }
             else if (radioButtonReader.Checked)
             {
-                foreach (var readerColumn in fieldReader)
+                if (isInt)
                 {
-                    string filterString = String.Format("[{0}] = '{1}'", readerColumn, searchText);
+                    filterString = String.Format("[id_library_kard] = '{0}'", searchDigits);
+                }
+                else if (!isInt)
+                {
+                    filterString = String.Format("[name_reader] LIKE '%{0}%' OR [home_address] LIKE '%{0}%' OR [phone] LIKE '%{0}%' OR [e_mail] LIKE '%{0}%'", searchText);
+                }
+                DataRow[] selectedRows = DBAction.libraryDS.Tables["reader"].Select(filterString);
 
-                    foreach (DataRow row in DBAction.libraryDS.Tables["reader"].Select(filterString))
+                if (selectedRows.Count() == 0) { MessageBox.Show("Ничего не найдено"); }
+                else
+                {
+                    foreach (DataRow row in selectedRows)
                     {
                         searchDataReader.ImportRow(row);
                     }
+
+                    dataGridViewSearch.DataSource = searchDataReader;
                 }
-                dataGridViewSearch.DataSource = searchDataReader;
             }
             else MessageBox.Show("Кажется, где-то тут ошибка!");
         }
